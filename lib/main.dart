@@ -172,7 +172,9 @@ class _PantryHomePageState extends State<PantryHomePage> {
   Future<void> toggleConsumed(PantryItem item) async {
     setState(() {
       final index = items.indexWhere((entry) => entry.id == item.id);
-      if (index >= 0) items[index] = item.copyWith(isConsumed: !item.isConsumed);
+      if (index >= 0) {
+        items[index] = item.copyWith(isConsumed: !item.isConsumed);
+      }
     });
     await saveItems();
   }
@@ -325,7 +327,7 @@ class _PantryHomePageState extends State<PantryHomePage> {
               ),
               Icon(
                 Icons.eco_rounded,
-                color: Colors.white.withOpacity(0.85),
+                color: Colors.white.withValues(alpha: 0.85),
                 size: 34,
               ),
             ],
@@ -338,7 +340,7 @@ class _PantryHomePageState extends State<PantryHomePage> {
                 width: 1,
                 height: 34,
                 margin: const EdgeInsets.symmetric(horizontal: 24),
-                color: Colors.white.withOpacity(0.25),
+                color: Colors.white.withValues(alpha: 0.25),
               ),
               SummaryStat(label: '3 天内到期', value: '$expiringCount'),
             ],
@@ -615,7 +617,7 @@ class _AddItemDialogState extends State<AddItemDialog> {
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                value: category,
+                initialValue: category,
                 decoration: const InputDecoration(
                   labelText: '分类',
                   prefixIcon: Icon(Icons.category_outlined),
